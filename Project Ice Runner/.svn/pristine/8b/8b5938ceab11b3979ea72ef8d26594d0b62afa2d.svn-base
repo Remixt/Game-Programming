@@ -1,0 +1,43 @@
+#include <iostream>
+#include "rendering/displaymanager.h"
+#include "gamestates.hpp"
+#include "deckloader.h"
+
+namespace ice
+{
+
+namespace game
+{
+
+GameState& DeckChoosingState::GetInstance(types::GameSystems& gameSystems)
+{
+    static DeckChoosingState deckChoosingState(gameSystems);
+    return deckChoosingState;
+}
+
+void DeckChoosingState::Enter()
+{
+    DeckLoader& loader = DeckLoader::GetInstance();
+    if(!loader.Configure())
+        std::cout << loader.GetError() << std::endl;
+
+
+}
+
+void DeckChoosingState::Exit()
+{
+}
+
+GameState* DeckChoosingState::Update()
+{
+    return nullptr;
+}
+
+void DeckChoosingState::Render()
+{
+
+}
+
+} // namespace game
+
+} // namespace ice

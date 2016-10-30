@@ -1,0 +1,43 @@
+#include <cstdio>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_keyboard.h>
+#include "eventmanager.h"
+
+namespace ice
+{
+
+namespace events
+{
+
+bool EventManager::Init()
+{
+    if (SDL_Init(SDL_INIT_EVENTS) == 0) return true;
+
+    printf("Couldn't init event manager: %s\n", SDL_GetError());
+    return false;
+}
+
+void EventManager::Poll()
+{
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
+    {
+        switch(event.type)
+        {
+        case SDL_QUIT:
+            shouldQuit_ = true;
+            return;
+        default:
+            break;
+        }
+    }
+}
+
+bool EventManager::ShouldQuit()
+{
+    return shouldQuit_;
+}
+
+} // namespace events
+
+} // namespace ice

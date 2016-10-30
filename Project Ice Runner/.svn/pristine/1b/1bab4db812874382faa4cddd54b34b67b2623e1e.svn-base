@@ -1,0 +1,63 @@
+#ifndef GAMESTATES_HPP
+#define GAMESTATES_HPP
+#include <cstdio>
+#include <vector>
+#include "gamestate.hpp"
+#include "rendering/dx11structs.h"
+
+namespace ice
+{
+
+namespace game
+{
+
+class MenuState final : public GameState
+{
+protected:
+    using GameState::GameState;
+
+public:
+    static GameState& GetInstance(types::GameSystems& gameSystems);
+
+    virtual void Enter() override;
+    virtual void Exit() override;
+    virtual GameState* Update() override;
+    virtual void Render() override;
+};
+
+
+class DeckChoosingState final : public GameState
+{
+protected:
+    using GameState::GameState;
+
+public:
+    static GameState& GetInstance(types::GameSystems& gameSystems);
+    virtual void Enter() override;
+    virtual void Exit() override;
+    virtual GameState* Update() override;
+    virtual void Render() override;
+
+private:
+};
+
+class RacingState final : public GameState
+{
+protected:
+    using GameState::GameState;
+
+public:
+    static GameState& GetInstance(types::GameSystems& gameSystems);
+    virtual void Enter() override;
+    virtual void Exit() override;
+    virtual GameState* Update() override;
+    virtual void Render() override;
+
+private:
+};
+
+} // namespace game
+
+} // namespace ice
+
+#endif // GAMESTATES_HPP

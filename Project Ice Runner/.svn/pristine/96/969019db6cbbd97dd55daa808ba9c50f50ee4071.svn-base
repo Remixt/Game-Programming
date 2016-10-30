@@ -1,0 +1,97 @@
+#ifndef MAP_HPP
+#define MAP_HPP
+#include <functional>
+#include <cstdlib>
+#include <cstdint>
+#include <vector>
+
+namespace ice
+{
+namespace game
+{
+class MapLoader;
+
+class Map
+{
+public:
+    friend class MapLoader;
+
+public:
+    struct Dimensions
+    {
+        Dimensions()
+            : numRows(), numColumns()
+        {}
+
+        Dimensions(uint32_t numRows, uint32_t numColumns)
+            : numRows(numRows), numColumns(numColumns)
+        {}
+
+        uint32_t numRows;
+        uint32_t numColumns;
+    };
+
+    class Difficulty
+    {
+    public:
+        using Rep = uint32_t;
+
+    public:
+        explicit Difficulty(Rep level = 0)
+            : level_(level)
+        {}
+
+        operator Rep() const { return level_; }
+
+    private:
+        Rep level_;
+    };
+
+    struct Description
+    {
+        Description()
+            : dimensions(), difficulty()
+        {}
+
+        Dimensions dimensions;
+        Difficulty difficulty;
+    };
+
+public:
+    Map(Description description = Description())
+        : walls_(description.dimensions.numRows * description.dimensions.numColumns), description_(description)
+    {}
+
+    void AddWall(uint32_t row, uint32_t col) { walls_[row*col + col] = true; }
+    bool HasWallAt(uint32_t row, uint32_t col) { return !!walls_[row*col + col]; }
+
+    void SetDimensions(Dimensions dimensions)
+    {
+        walls_.reserve(dimensions.numRows * dimensions.numColumns);
+        description_.dimensions = dimensions;
+    }
+
+    void SetDescription(Description description)
+    {
+        walls_.reserve(description.dimensions.numRows * description.dimensions.numColumns);
+        description_ = description;
+    }
+
+    void Clear() { walls_.clear(); }
+
+private:
+    //! should eventually be changed to a vector of bitsets.
+    std::vector<char> walls_;
+    Description description_;
+};
+
+
+} // namespace game
+
+} // namespace ice
+
+//! Allow Map::Difficulty to be used as a key in a map.
+template <>
+struct std::hash<ice::game::Map::Difficulty> : std::hash<ice::game::Map::Difficulty::Rep> {};
+
+#endif // MAP_HPP
