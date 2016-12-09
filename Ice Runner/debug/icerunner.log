@@ -1,0 +1,43 @@
+﻿  background.cpp
+  deckchoosingsubstate.cpp
+  deckloader.cpp
+  displaymanager.cpp
+  dj.cpp
+  dx11constantbuffer.cpp
+  dx11geometry.cpp
+  dx11renderer.cpp
+  dx11resourceloader.cpp
+  dx11shader.cpp
+  dx11texture.cpp
+  effect.cpp
+  eventmanager.cpp
+  gamemanager.cpp
+  hidmanager.cpp
+  luainterface.cpp
+  main.cpp
+  mainmenuresourcemanager.cpp
+  mainmenustate.cpp
+  maprenderer.cpp
+  Generating Code...
+  Compiling...
+  maptestingresourcemanager.cpp
+  maptestingstate.cpp
+  menu.cpp
+  music.cpp
+  racingresourcemanager.cpp
+  racingstate.cpp
+  racingsubstate.cpp
+  resourceloader.cpp
+  resourcemanager.cpp
+game\resourcemanager.cpp(236): warning C4533: initialization of 'focusableBuffer' is skipped by 'goto failure'
+  game\resourcemanager.cpp(227): note: see declaration of 'focusableBuffer'
+  game\resourcemanager.cpp(236): note: see declaration of 'failure'
+game\resourcemanager.cpp(236): warning C4533: initialization of 'backgroundBuffer' is skipped by 'goto failure'
+  game\resourcemanager.cpp(217): note: see declaration of 'backgroundBuffer'
+  game\resourcemanager.cpp(236): note: see declaration of 'failure'
+  resultssubstate.cpp
+  scene.cpp
+  soundmanager.cpp
+  Generating Code...
+  icerunner.vcxproj -> C:\Users\cwb0133\Desktop\Group10\icerunner\debug\icerunner.exe
+  icerunner.vcxproj -> debug\icerunner.pdb (Full PDB)

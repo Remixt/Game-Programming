@@ -1,6 +1,8 @@
-#    Projects in progress
-##   Ice Runner - A game I'm making with a team of 2 other people from scratch using C++ and Direct X 11.2 
-###  Objectve: Create a game that impliments a simple game mechanic from one of your favorite games in childhood.
-#### My team and I decided to use a mechanic from Pokemon where the character has to slide around in an ice maze in order to navigate    through parts of an underground tunnel. We are turning that into a two player maze race that allows map creation. 
+#Project Ice Runner
+## A Fall 2016 Semester Project for Game Programing 4210
+![picture alt](MainMenu.png "Small Size Map Editing Example")
+#What is it?
+## Ice Runner Is a PVP Puzzle Racer influenced by a simple mechanic found in the popular game franchise: Pokemon.
 
+Here is an example of that mechanic:
 
