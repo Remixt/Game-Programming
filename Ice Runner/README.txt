@@ -39,7 +39,7 @@ configure/reload maps buttons respectively to see your changes real-time.
    
 2. INSTRUCTIONS:
 
-a) Open Map Maker 2.0
+a) Open _Map Builder (.jar file in exe)
 b) Select one of the three available map sizes in the bottom left window pane
 c) Select the intended difficulty via radio button in the bottom left window pane.
 d) Start building a new map by clicking on one of the three colored 'tiles' in the top left corner. The currently seleceted tile is indicated by a yellow bounding box.
