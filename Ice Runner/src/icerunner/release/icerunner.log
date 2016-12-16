@@ -1,1 +1,53 @@
-﻿
+﻿  background.cpp
+  deckchoosingsubstate.cpp
+  deckloader.cpp
+  displaymanager.cpp
+  dj.cpp
+  dx11constantbuffer.cpp
+  dx11geometry.cpp
+  dx11renderer.cpp
+  dx11resourceloader.cpp
+  dx11shader.cpp
+  dx11texture.cpp
+  effect.cpp
+  eventmanager.cpp
+  gamemanager.cpp
+  hidmanager.cpp
+  luainterface.cpp
+game\luainterface.cpp(114): warning C4189: 'userdata': local variable is initialized but not referenced
+  game\luainterface.cpp(140): note: see reference to function template instantiation 'int ice::game::ObjectGC<T_>(lua_State *)' being compiled
+          with
+          [
+              T_=glm::vec3
+          ]
+  game\luainterface.cpp(202): note: see reference to function template instantiation 'T_ *ice::game::PushObject<glm::vec3,>(lua_State *,luaL_Reg [],ice::game::LuaObjectID)' being compiled
+          with
+          [
+              T_=glm::vec3
+          ]
+  main.cpp
+  mainmenuresourcemanager.cpp
+  mainmenustate.cpp
+  maprenderer.cpp
+  Generating Code...
+  Compiling...
+  maptestingresourcemanager.cpp
+  maptestingstate.cpp
+  menu.cpp
+  music.cpp
+  racingresourcemanager.cpp
+  racingstate.cpp
+  racingsubstate.cpp
+  resourceloader.cpp
+  resourcemanager.cpp
+game\resourcemanager.cpp(241): warning C4533: initialization of 'focusableBuffer' is skipped by 'goto failure'
+  game\resourcemanager.cpp(232): note: see declaration of 'focusableBuffer'
+  game\resourcemanager.cpp(241): note: see declaration of 'failure'
+game\resourcemanager.cpp(241): warning C4533: initialization of 'backgroundBuffer' is skipped by 'goto failure'
+  game\resourcemanager.cpp(222): note: see declaration of 'backgroundBuffer'
+  game\resourcemanager.cpp(241): note: see declaration of 'failure'
+  resultssubstate.cpp
+  scene.cpp
+  soundmanager.cpp
+  Generating Code...
+  icerunner.vcxproj -> C:\Users\cbrant\Documents\GitHub\Project-Ice-Runner\Ice Runner\src\icerunner\release\icerunner.exe

@@ -19,7 +19,7 @@ RacingState::RacingState(types::GameSystems& gameSystems)
     : GameState(gameSystems), resourceManager_(ResourceManager::GetInstance(gameSystems)),
       resources_(resourceManager_.GetRacingResources()), pNextState_(nullptr),
       hudResources_(resources_.GetHUDResources()), player1Resources_(resources_.GetPlayer1Resources()),
-      player2Resources_(resources_.GetPlayer2Resources()),
+      player2Resources_(resources_.GetPlayer2Resources()), resultsResources_(resources_.GetResultsResources()),
       pCycleEffect_(resourceManager_.GetSoundEffect(ResourceManager::SoundEffect::eMenuCycle)),
       pSelectEffect_(resourceManager_.GetSoundEffect(ResourceManager::SoundEffect::eMenuSelect)),
       background_(resourceManager_.GetBackground()), renderer_(gameSystems.displayManager.GetRenderer())

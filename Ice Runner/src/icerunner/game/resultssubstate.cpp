@@ -16,7 +16,7 @@ RacingState::SubState& RacingState::ResultsSubState::GetInstance(RacingState& ra
 }
 
 RacingState::ResultsSubState::ResultsSubState(RacingState& racingState)
-    : SubState(racingState), resultMenu_(racingState.gameSystems_), racingSubState_((RacingState::RacingSubState&)RacingState::RacingSubState::GetInstance(racingState))
+    : SubState(racingState), racingSubState_((RacingState::RacingSubState&)RacingState::RacingSubState::GetInstance(racingState))
 {
 	menuGeometry_.topLeftPosition = glm::vec2(-.75, .2);
 	menuGeometry_.extent = glm::vec2(0, .14);
@@ -24,42 +24,13 @@ RacingState::ResultsSubState::ResultsSubState(RacingState& racingState)
 
 void RacingState::ResultsSubState::Enter()
 {
-	static bool firstTime = true;
-	Menu::LabelDescription winnerLabelDesc;
-	winnerLabelDesc.elementDescription.geometry = menuGeometry_;
-	winnerLabelDesc.elementDescription.pText = (racingSubState_.GetWinner() == RacingState::RacingSubState::Winner::ePlayer1 ? "PLAYER 1 WINS!!" : "PLAYER 2 WINS!!");
-
-	Menu::Description menuDesc;
-	menuDesc.pLabelDescriptions = &winnerLabelDesc;
-	menuDesc.pButtonDescriptions = nullptr;
-	menuDesc.numButtons = 0;
-	menuDesc.numLabels = 1;
-
-	if (racingSubState_.GetWinner() == RacingState::RacingSubState::Winner::ePlayer1)
-	{
-		menuDesc.colors[0] = glm::vec4(0, 0, 0, 1);
-		menuDesc.colors[1] = glm::vec4(0, 0, 0, 1);
-		menuDesc.colors[2] = glm::vec4(0, .25, .8, 1);
-		menuDesc.colors[3] = glm::vec4(0, .25, .8, 1);
-	}
-	else
-	{
-		menuDesc.colors[0] = glm::vec4(0, 0, 0, 1);
-		menuDesc.colors[1] = glm::vec4(0, 0, 0, 1);
-		menuDesc.colors[2] = glm::vec4(.8, .25, 0, 1);
-		menuDesc.colors[3] = glm::vec4(.8, .25, 0, 1);
-	}
-	if (firstTime)
-	{
-		resultMenu_.Describe(racingState_.renderer_, menuDesc);
-		firstTime = false;
-	}
+    pResultMenu_ = racingSubState_.GetWinner() == RacingState::RacingSubState::Winner::ePlayer1 ? &racingState_.resultsResources_.GetPlayer1WinsMenu() :
+                                                                                                  &racingState_.resultsResources_.GetPlayer2WinsMenu();
 	racingState_.background_.SetAnimationSpeed(constants::MENU_BACKGROUND_SPEED);
 }
 
 void RacingState::ResultsSubState::Exit()
 {
-	//resultMenu_.Free();
 }
 
 RacingState::StatePair RacingState::ResultsSubState::Update()
@@ -86,7 +57,7 @@ void RacingState::ResultsSubState::Render()
 	racingState_.background_.Render();
 
 	racingState_.renderer_.SetViewPort(&view);
-	resultMenu_.Render();
+    pResultMenu_->Render();
 }
 
 } // namespace game

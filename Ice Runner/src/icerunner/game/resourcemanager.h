@@ -203,17 +203,46 @@ public:
             types::GameSystems& gameSystems_;
         };
 
+
+        class ResultsResources
+        {
+            friend class RacingState;
+        public:
+            ResultsResources(types::GameSystems& gameSystems)
+                : player1WinsMenu_(gameSystems), player2WinsMenu_(gameSystems),
+                  renderer_(gameSystems.displayManager.GetRenderer())
+            {}
+
+            bool Load();
+
+            void Unload()
+            {
+                player1WinsMenu_.Free();
+                player2WinsMenu_.Free();
+            }
+
+            Menu& GetPlayer1WinsMenu() { return player1WinsMenu_; }
+            Menu& GetPlayer2WinsMenu() { return player2WinsMenu_; }
+
+        private:
+            Menu player1WinsMenu_;
+            Menu player2WinsMenu_;
+
+            dx11rendering::DX11Renderer& renderer_;
+        };
+
     public:
         RacingResources(types::GameSystems& gameSystems)
             : player1Resources_(gameSystems), player2Resources_(gameSystems),
-              hudResources_(gameSystems)
+              hudResources_(gameSystems), resultsResources_(gameSystems)
         {}
 
         bool Load()
         {
             return player1Resources_.Load() &&
                    player2Resources_.Load() &&
-                   hudResources_.Load();
+                   hudResources_.Load() &&
+                   resultsResources_.Load();
         }
 
         void Unload()
@@ -221,23 +250,21 @@ public:
             player1Resources_.Unload();
             player2Resources_.Unload();
             hudResources_.Unload();;
+            resultsResources_.Unload();
         }
 
         Player1Resources& GetPlayer1Resources() { return player1Resources_; }
         Player2Resources& GetPlayer2Resources() { return player2Resources_; }
         HUDResources& GetHUDResources() { return hudResources_; }
+        ResultsResources& GetResultsResources() { return resultsResources_; }
 
     private:
         Player1Resources player1Resources_;
         Player2Resources player2Resources_;
         HUDResources hudResources_;
+        ResultsResources resultsResources_;
     };
 
-    class ResultsResources
-    {
-    public:
-    private:
-    };
 
 public:
     static ResourceManager& GetInstance(types::GameSystems& gameSystems)
@@ -307,6 +334,7 @@ private:
     MainMenuResources mainMenuResources_;
     MapTestingResources mapTestingResources_;
     RacingResources racingResources_;
+
     DJ dj_;
     uint32_t indices_[6];
 };

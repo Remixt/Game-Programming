@@ -263,6 +263,7 @@ bool ResourceManager::RacingResources::HUDResources::Load()
         return false;
     }
 
+
     return true;
 }
 
@@ -303,6 +304,49 @@ void ResourceManager::RacingResources::Player2Resources::Unload()
 {
     gameSystems_.physicsManager.ClearScene(sceneIndex_);
 }
+
+bool ResourceManager::RacingResources::ResultsResources::Load()
+{
+    NormalizedRect resultsMenuGeo;
+    resultsMenuGeo.topLeftPosition = glm::vec2(-.75, .2);
+    resultsMenuGeo.extent = glm::vec2(0, .14);
+
+    Menu::LabelDescription winnerLabelDesc;
+    winnerLabelDesc.elementDescription.geometry = resultsMenuGeo;
+    winnerLabelDesc.elementDescription.pText = "PLAYER 1 WINS!!";
+
+    Menu::Description menuDesc;
+    menuDesc.pLabelDescriptions = &winnerLabelDesc;
+    menuDesc.pButtonDescriptions = nullptr;
+    menuDesc.numButtons = 0;
+    menuDesc.numLabels = 1;
+    menuDesc.colors[0] = glm::vec4(0, 0, 0, 1);
+    menuDesc.colors[1] = glm::vec4(0, 0, 0, 1);
+    menuDesc.colors[2] = glm::vec4(0, .25, .8, 1);
+    menuDesc.colors[3] = glm::vec4(0, .25, .8, 1);
+
+    if (!player1WinsMenu_.Describe(renderer_, menuDesc))
+    {
+        printf("Failed to allocate player 2 wins menu\n");
+        return false;
+    }
+
+    winnerLabelDesc.elementDescription.pText = "PLAYER 2 WINS!!";
+    menuDesc.colors[0] = glm::vec4(0, 0, 0, 1);
+    menuDesc.colors[1] = glm::vec4(0, 0, 0, 1);
+    menuDesc.colors[2] = glm::vec4(.8, .25, 0, 1);
+    menuDesc.colors[3] = glm::vec4(.8, .25, 0, 1);
+
+    if (!player2WinsMenu_.Describe(renderer_, menuDesc))
+    {
+        printf("Failed to allocate player 1 wins menu\n");
+        return false;
+    }
+
+    return true;
+}
+
+
 
 } // namespace game
 } // namespace ice

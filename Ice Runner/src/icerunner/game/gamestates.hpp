@@ -147,6 +147,7 @@ private:
     ResourceManager::RacingResources::HUDResources& hudResources_;
     ResourceManager::RacingResources::Player1Resources& player1Resources_;
     ResourceManager::RacingResources::Player2Resources& player2Resources_;
+    ResourceManager::RacingResources::ResultsResources& resultsResources_;
 
     GameState* pNextState_;
     sound::Effect* pCycleEffect_;

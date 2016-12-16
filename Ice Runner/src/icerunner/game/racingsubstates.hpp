@@ -162,7 +162,7 @@ private:
     ResultsSubState(RacingState& racingState);
 
 private:
-	Menu resultMenu_;
+    Menu* pResultMenu_;
 	NormalizedRect menuGeometry_;
 
 	RacingState::RacingSubState& racingSubState_;

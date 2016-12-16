@@ -15,7 +15,7 @@ bool ResourceManager::Load()
 {
     bool result = LoadBasicResources() &&
                   mainMenuResources_.Load() &&
-                  mapTestingResources_.Load();
+                  mapTestingResources_.Load() &&
                   racingResources_.Load();
 
     LoadViews();
